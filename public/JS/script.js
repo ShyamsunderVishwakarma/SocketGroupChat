@@ -40,7 +40,6 @@ app.controller('AppCtrl', function ($scope,socket) {
   socket.on('connect', function () { });
 
   socket.on('updatechat', function (username, data,liveusercount) {
-   debugger;
    	  $scope.liveusercount=liveusercount;
       var user = {};
       user.username = username;
@@ -48,14 +47,12 @@ app.controller('AppCtrl', function ($scope,socket) {
       $scope.users.push(user);
    });
 
-   $scope.joinRoom = function (data) {
-     debugger;
+   $scope.createUser = function (data) {
       $scope.currentUser = data.username;
       socket.emit('adduser', data);
    }
 
-   $scope.doPost = function(data){
-     debugger;
+   $scope.sendMessage = function(data){
      socket.emit('sendchat',data);
    }
 
