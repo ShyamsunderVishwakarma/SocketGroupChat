@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Socket</title>
+		
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="../static/JS/angular.min.js"></script>
+		<script type="text/javascript" src="../static/JS/script.js"></script>
+	</head>
+	<body ng-app="myApp">
+
+	<div ng-controller="AppCtrl">
+		<div class="user-creation">
+			<div ng-if="!currentUser">
+				<label> Your Name :</label>
+				<input type="text" class="create-user" ng-model="join.username" placeholder="Your Name"></input>
+				<button type="submit" id="join" ng-click="createUser(join)">Join</button>
+			</div>
+			<div ng-if="currentUser">
+				<h4>Welcome : {{currentUser}}</h4> 
+				<h4>Alive Member : {{liveusercount}}</h4>
+			</div>
+		</div>
+
+		<div class="send-notification" ng-if="currentUser">
+				<label> Message :</label>
+				<input type="text" class="user-message" ng-model="message" placeholder="Your Message"></input>
+				<button type="submit" id="sendMessage" ng-click="sendMessage(message)">Send</button>
+		</div>
+
+		<div class="chat-list">
+			<div ng-repeat="user in users">
+					<strong>{{user.username}} : </strong>{{user.message}}
+			</div>
+		</div>
+		</div>
+		
+</script>
+	</body>
+</html>
